@@ -1,0 +1,5 @@
+SPI
+Serial Peripheral Interface, often shortened as SPI, is a synchronous serial data transfer protocol named by Motorola. 
+Here two or more serial devices are connected to each other in full-duplex mode. The devices connected to each other are either Master or Slave.
+In a SPI link there could as many Masters and Slaves as required, but it’s very rare to find more than one Master in a SPI link.
+This is a full-duplex connection, which means that Master can send data to Slave(s) and the Slave(s) can also send the data to the Master at the same time.
