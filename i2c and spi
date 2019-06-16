@@ -1,5 +1,32 @@
-SPI
+SPI:
+
 Serial Peripheral Interface, often shortened as SPI, is a synchronous serial data transfer protocol named by Motorola. 
 Here two or more serial devices are connected to each other in full-duplex mode. The devices connected to each other are either Master or Slave.
 In a SPI link there could as many Masters and Slaves as required, but it’s very rare to find more than one Master in a SPI link.
 This is a full-duplex connection, which means that Master can send data to Slave(s) and the Slave(s) can also send the data to the Master at the same time.
+
+The SPI operation is based upon shift registers. Every device,whether Master or Slave has an 8-bit shift register inside it. 
+The size of the shift register should be the same for both Master and Slave, and the protocol should support it.
+SPI is a synchronous serial data transfer protocol, which means that there must be a clock to synchronize the data transfer.
+We use the clock source of the Master device to synchronize the data transfer since Master is responsible for initiating the connection.
+
+Transfer Operation:
+- Both, Master and Slave place the data byte they wish to transfer in their respective shift registers before the communication starts.
+- Master generates 8 clock pulses. After each clock pulse, one bit of information is transferred from Master to Slave and vice-versa.
+- After 8 clock pulses, Master would have received Slave’s data, whereas Slave would have Master’s data, a full-duplex communication.
+
+Master and Slave should agree on a particular synchronization protocol as well, or else everything will go wrong and data will get lost.
+
+I2C:
+
+I²C is a multi-master protocol that uses 2 signal lines. The two I²C signals are called ‘serial data’ (SDA) and
+‘serial clock’ (SCL).It is asynchronous in nature. It can support upto 1008 slave devices and allows more than one master.
+Each I2C bus consists of two signals: SCL and SDA. SCL is the clock signal, and SDA is the data signal.
+
+Protocol
+-Messages are broken up into two types of frame: an address frame and data frame. Data is placed on the SDA line after SCL goes low, and is sampled after the SCL line goes high.
+-To initiate the address frame, the master device leaves SCL high and pulls SDA low. This puts all slave devices on notice that a transmission is about to start.
+-The address frame is always first in any new communication sequence. For a 7-bit address, the address is clocked out most significant bit (MSB) first, followed by a R/W bit.
+-Once all the data frames have been sent, the master will generate a stop condition.
+
+Concluding, I2C and SPI are only intended for short distance communications between devices.
