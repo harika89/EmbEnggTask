@@ -8,7 +8,7 @@ int main(void)
 {
   HAL_init()
     
-  I2C_HandleTypeDef hi2c1
+  I2C_HandleTypeDef hi2c1;
   HAL_I2C_Master_Transmit(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout); 
 
   HAL_I2C_Master_Receive(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout); 
@@ -34,6 +34,8 @@ int main(void)
   //buffer[1] : LSB data 
   rawT = buffer[0]<<8 | buffer[1]; //combine 2 8-bit into 1 16bit  
   Temperature = ((float)rawT/65536)*165.0 -40.0; 
+  
+  return Temperature;
 }
 
   
